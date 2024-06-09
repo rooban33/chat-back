@@ -2,6 +2,7 @@ from requests.exceptions import ConnectionError
 from custom import Custom
 from flask import Flask, request
 from flask_cors import CORS
+import os
 
 # ------------------ SETUP ------------------
 
@@ -253,4 +254,5 @@ def default():
 # ------------------ START SERVER ------------------
 
 if __name__ == "__main__":
-    app.run(port=8080)
+    port = int(os.environ.get("PORT", 8080))  # Use the port provided by the environment, or default to 8080
+    app.run(host="0.0.0.0", port=port)
